@@ -16,13 +16,13 @@ export default function Canvas(props) {
   function drawStar(fillColor, ctx,value,arr,color,name ,fsize,rname){
     ctx.fillStyle = fillColor;
     ctx.save();
-    ctx.clearRect(0, 0, Width-Width/4, 460);  
+    ctx.clearRect(0, 0, Width-Width/7, 460);  
     ctx.fillStyle = "#78A083";
     ctx.fillRect(10,0, 650,460);
     ctx.font = "25px fantasy";
     ctx.fillStyle = "#344955";
     ctx.fillText(rname ,150,450);
-    ctx.translate(275, 210);
+    ctx.translate(215, 210);
     ctx.rotate(Math.PI / 2);
     ctx.scale(1, 1);
     ctx.strokeStyle = "black";
@@ -59,5 +59,5 @@ export default function Canvas(props) {
     ctx.restore()
     ctx.save()
   }
-  return <canvas id="myCanvas" ref={canvasRef} width={Width-Width/5} height={460}  />;
+  return <canvas id="myCanvas" ref={canvasRef} width={Width-Width/7} height={460}  />;
 }
