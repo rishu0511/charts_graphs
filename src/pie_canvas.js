@@ -21,10 +21,10 @@ export default function Canvas(props) {
     ctx.fillRect(10,0, 650,460);
     ctx.font = "25px fantasy";
     ctx.fillStyle = "#344955";
-    ctx.fillText(rname ,150,50);
-    ctx.translate(185, 240);
+    ctx.fillText(rname ,150.5,45);
+    ctx.translate(190, 230);
     ctx.rotate(Math.PI / 2);
-    ctx.scale(2, 2);
+    ctx.scale(1, 1);
     ctx.strokeStyle = "black";
     ctx.lineWidth = 8;
     ctx.lineCap = "round";
@@ -37,13 +37,13 @@ export default function Canvas(props) {
       ctx.fill()
       for (let i = 0; i <= 2*arr[v]; i++) {
         ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(80, 0);
+        ctx.moveTo(0.5, 0.5);
+        ctx.lineTo(170.5, 0);
         ctx.stroke();
          if(i===40){
-          ctx.font = "7px fantasy";
+          ctx.font = "13px fantasy";
           ctx.fillStyle = "black";
-          ctx.fillText(name[v]+"  "+arr[v]/2+"%" ,30, -7);
+          ctx.fillText(name[v]+"  "+arr[v]/2+"%" , 90.5, -7);
         }
         ctx.rotate(Math.PI / 200);
     }
@@ -52,7 +52,7 @@ export default function Canvas(props) {
     ctx.save()
     ctx.beginPath();
     ctx.fillStyle="#35374B";
-    ctx.arc(0,0,10,0,Math.PI*2)
+    ctx.arc(0,0,20,0,Math.PI*2)
     ctx.fill()
     ctx.strokeStyle = "#35374B";
     ctx.stroke();

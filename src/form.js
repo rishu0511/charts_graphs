@@ -35,11 +35,11 @@ export default function Form(props){
     });
   }
   function savephoto(){
-      var canvas = document.querySelector("#myCanvas");
-  var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+  var canvas = document.querySelector("#myCanvas");
+  var image = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
   
   var element = document.createElement('a');
-  var filename = 'test.png';
+  var filename = 'test.jpeg';
   element.setAttribute('href', image);
   element.setAttribute('download', filename);
 
