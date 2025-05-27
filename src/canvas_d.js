@@ -1,28 +1,25 @@
 import React from "react"
 import { useRef, useEffect, useState } from "react";
-export default function Canvas(props) {
-  const canvasRef = useRef(null);
+function Canvasd(props) {
+  const canvasRe = useRef(null);
   const [Width, setwidth] = useState(0);
-  const [color,setcolor]= useState(["red","blue","yellow"]);
-  const [value,setvalue] = useState(0);
-  const ref = useRef(0);
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = canvasRe.current;
     const context = canvas.getContext("2d");
     const width = window.innerWidth;
     setwidth(width);
-    drawStar("black",context,props.VAL,props.ARR,props.COLOR,props.NAMES,props.F_SIZE,props.NAME);
-  });
-  function drawStar(fillColor, ctx,value,arr,color,name ,fsize,rname){
+    drawStarr("black",context,props.VA,props.AR,props.COLO,props.NAME,props.NAM);
+  },[props]);
+  function drawStarr(fillColor, ctx,value,arr,color,name,rname){
     ctx.fillStyle = fillColor;
     ctx.save();
-    ctx.clearRect(0, 0, Width-Width/10+40, 460);  
+    ctx.clearRect(0, 0, Width-400, 700);
     ctx.fillStyle = "#78A083";
-    ctx.fillRect(10,0, 650,460);
+    ctx.fillRect(0,0, Width-400,700);
     ctx.font = "25px fantasy";
     ctx.fillStyle = "#344955";
-    ctx.fillText(rname ,150.5,45);
-    ctx.translate(190, 230);
+    ctx.fillText(rname ,150,45);
+    ctx.translate(300, 360);
     ctx.rotate(Math.PI / 2);
     ctx.scale(1, 1);
     ctx.strokeStyle = "black";
@@ -37,13 +34,13 @@ export default function Canvas(props) {
       ctx.fill()
       for (let i = 0; i <= 2*arr[v]; i++) {
         ctx.beginPath();
-        ctx.moveTo(0.5, 0.5);
-        ctx.lineTo(170.5, 0);
+        ctx.moveTo(0, 0);
+        ctx.lineTo(270, 0);
         ctx.stroke();
          if(i===40){
           ctx.font = "13px fantasy";
           ctx.fillStyle = "black";
-          ctx.fillText(name[v]+"  "+arr[v]/2+"%" , 90.5, -7);
+          ctx.fillText(name[v]+"  "+arr[v]/2+"%" , 90, -7);
         }
         ctx.rotate(Math.PI / 200);
     }
@@ -59,5 +56,6 @@ export default function Canvas(props) {
     ctx.restore()
     ctx.save()
   }
-  return <canvas id="myCanvas" ref={canvasRef} width={Width-Width/10+40} height={460}  />;
+  return <canvas id="dCanvas" ref={canvasRe} width={Width-399} height={700} />;
 }
+export default Canvasd
