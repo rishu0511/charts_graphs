@@ -1,7 +1,6 @@
 import React from "react";
 import { useState,useCallback, useEffect, createContext, useContext } from "react";
 import Canvas from "./pie_canvas.js"
-import Canvasd from "./canvas_d.js"
 export default function Form(props){
   const [input, setinput] = useState({
     name: "",
@@ -37,7 +36,7 @@ export default function Form(props){
     });
   }
   function savephoto(){
-  var canvas = document.querySelector("#dCanvas");
+  var canvas = document.querySelector("#myCanvas");
   var image = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
   
   var element = document.createElement('a');
@@ -159,8 +158,6 @@ export default function Form(props){
         <button onClick={handlesubmit}>Draw</button>
         <button id="download" disabled={disable} onClick={savephoto}>Download</button>
       </form>
-      {ishidden ?<div  class="pie-canvas"><Canvas ARR={per} VAL={val} COLOR={color} NAMES={name}  NAME={rname}/></div>:null}
-      <div hidden={true} ><Canvasd AR={per} VA={val} COLO={color} NAME={name}  NAM={rname}/></div>
-    </div>
+      {ishidden ?<div  class="pie-canvas"><Canvas ARR={per} VAL={val} COLOR={color} NAMES={name}  NAME={rname}/></div>:null}    </div>
   );
 }

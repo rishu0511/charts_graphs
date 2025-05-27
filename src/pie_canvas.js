@@ -14,11 +14,19 @@ export default function Canvas(props) {
     drawStar("black",context,props.VAL,props.ARR,props.COLOR,props.NAMES,props.F_SIZE,props.NAME);
   });
   function drawStar(fillColor, ctx,value,arr,color,name ,fsize,rname){
+    var len  = arr.length;
     ctx.fillStyle = fillColor;
     ctx.save();
-    ctx.clearRect(0, 0, Width-Width/10+40, 460);  
+    ctx.clearRect(0, 0, Width-Width/10+60, 460);  
     ctx.fillStyle = "#78A083";
-    ctx.fillRect(10,0, 650,460);
+    ctx.fillRect(10,0, 750,460);
+    for(let v = 0; v <= len-1; v++){
+      ctx.fillStyle = color[v];
+      ctx.fillRect(380,60+v*25,13,13);
+      ctx.font = "15px fantasy";
+      ctx.fillStyle = "#344955";
+      ctx.fillText(name[v]+"  "+arr[v]/2+"%",400,70+v*25);
+    }
     ctx.font = "25px fantasy";
     ctx.fillStyle = "#344955";
     ctx.fillText(rname ,150.5,45);
@@ -30,7 +38,7 @@ export default function Canvas(props) {
     ctx.lineCap = "round";
     // Hour marks
     ctx.save();
-    var len  = arr.length;
+    
     var VAL = value;
     for(let v = 0; v <= len; v++){
       ctx.strokeStyle = color[v]
@@ -40,11 +48,6 @@ export default function Canvas(props) {
         ctx.moveTo(0.5, 0.5);
         ctx.lineTo(170.5, 0);
         ctx.stroke();
-         if(i===40){
-          ctx.font = "13px fantasy";
-          ctx.fillStyle = "black";
-          ctx.fillText(name[v]+"  "+arr[v]/2+"%" , 90.5, -7);
-        }
         ctx.rotate(Math.PI / 200);
     }
     }
@@ -59,5 +62,5 @@ export default function Canvas(props) {
     ctx.restore()
     ctx.save()
   }
-  return <canvas id="myCanvas" ref={canvasRef} width={Width-Width/10+40} height={460}  />;
+  return <canvas id="myCanvas" ref={canvasRef} width={Width-Width/10+60} height={460}  />;
 }
