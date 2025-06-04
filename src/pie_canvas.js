@@ -38,7 +38,6 @@ export default function Canvas(props) {
     ctx.lineCap = "round";
     // Hour marks
     ctx.save();
-    
     var VAL = value;
     for(let v = 0; v <= len; v++){
       ctx.strokeStyle = color[v]

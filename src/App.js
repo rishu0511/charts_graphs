@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Form from './form.js';
-import Canvas from "./pie_canvas.js"
-
+import Formu from "./form_para.js"
 export default function App() {
   const[number,setnumber] =useState([0])
   return (
@@ -11,6 +10,8 @@ export default function App() {
       
       <div >
         <div class="first"><Form/></div>
+
+        <div><Formu/></div>
       </div>
     </div>
   );

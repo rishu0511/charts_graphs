@@ -19,6 +19,7 @@ export default function Form(props){
   const [name,setname] = useState([])
   const [rname,setrname] = useState("")
   const [disable,setdisable] = useState(true)
+  const [ddisable,setddisable] = useState(false)
   function handleChange(event) {
     setrname("")
     sethidden(false)
@@ -27,6 +28,7 @@ export default function Form(props){
     setcolor([])
     setname([])
     setdisable(true)
+    setddisable(false)
     const { name, value } = event.target;
     setinput((prevalue) => {
       return {
@@ -112,6 +114,7 @@ export default function Form(props){
     colors: "",
     total: "",
     })
+    setddisable(true)
    sethidden(true)
   }, [input,per,number,val,color]);
  
@@ -155,7 +158,7 @@ export default function Form(props){
           type="number"
 
         />
-        <button onClick={handlesubmit}>Draw</button>
+        <button disabled={ddisable} onClick={handlesubmit}>Draw</button>
         <button id="download" disabled={disable} onClick={savephoto}>Download</button>
       </form>
       {ishidden ?<div  class="pie-canvas"><Canvas ARR={per} VAL={val} COLOR={color} NAMES={name}  NAME={rname}/></div>:null}    </div>
