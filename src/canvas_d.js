@@ -32,8 +32,8 @@ export default function Canvasd(props) {
       setbvalue(b)
     }
     
-    ctx.fillText("Equation :- "+a+"x²"+bvalue+"x"+cvalue,500,60);
-    ctx.fillText("Vertex of parabola:-(" + vx +","+ vy +")",500,100);
+    ctx.fillText("Equation :- "+a+"x²"+bvalue+"x"+cvalue,400,60);
+    ctx.fillText("Vertex of parabola:-(" + vx +","+ vy +")",400,100);
     ctx.translate(270,220)
     ctx.rotate(-Math.PI/2)
     ctx.save()
@@ -61,29 +61,24 @@ export default function Canvasd(props) {
           ctx.font = "18px fantasy";
           ctx.fillStyle = "black";
           ctx.fillText("Y" ,0,230);
-        } else if(v===2){
-          ctx.font = "18px fantasy";
-          ctx.fillStyle = "black";
-          ctx.fillText("x",0,230);
+          ctx.fillText("X",-230,0);
         }
          for(let i = 1;i<=20 ;i++){
           ctx.beginPath();
           ctx.moveTo(10*i, -3);
           ctx.lineTo(10*i, 3);
           ctx.stroke();
-          if(v === 2){
-            ctx.font = "8px fantasy";
+          if(v === 1){
+            ctx.font = "6px fantasy";
             ctx.fillStyle = "black";
-            ctx.fillText("-"+i ,10*i,-5);
-          }else if(v===3){
-            ctx.font = "8px fantasy";
+            ctx.fillText("-"+i,-10*i-5,-5);
+            ctx.fillText(+i,10*i,-5)
+          }else if(v === 2){
+            ctx.font = "6px fantasy";
             ctx.fillStyle = "black";
-            ctx.fillText("-"+i ,10*i,-5);
-          } else{
-            ctx.font = "8px fantasy";
-            ctx.fillStyle = "black";
-            ctx.fillText(i ,10*i,-5);    
-          }
+            ctx.fillText("-"+i,10*i,-5);
+            ctx.fillText(i ,-10*i-5,-5)
+          } 
         }
         ctx.rotate(Math.PI / 2);
     }

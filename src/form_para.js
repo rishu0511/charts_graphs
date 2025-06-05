@@ -38,6 +38,7 @@ export default function Formu(props){
     setby(0)
     setvx(0)
     setvy(0)
+    setcount(0)
     sethidde(false)
     setdisable(true)
     setsdisable(true)
@@ -103,13 +104,6 @@ export default function Formu(props){
   return (
     <div>
       <form class="FORM" >
-        <input
-          onChange={handleChange}
-          name="name"
-          placeholder="Name of parabola..."
-          value={input.name}
-          type="text"
-        />
         <input
           onChange={handleChange}
           name="a"
