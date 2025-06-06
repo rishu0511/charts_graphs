@@ -7,6 +7,7 @@ export default function Formu(props){
     a: 0,
     b: 0,
     c: 0,
+    d: 0,
     cut_val: 0,
   });
   const[x1,setx1] = useState(0)
@@ -15,13 +16,14 @@ export default function Formu(props){
   const [y3 , sety3] = useState(0)
   const [ishidden,sethidde] = useState(false);
   const [bizx,setbx] = useState(0)
-  const [bizy,setby] =useState(0)
+  const [bizy,setby] = useState(0)
   const [disable,setdisable] = useState(true)
   const [showdisable,setsdisable] = useState(true)
   const [ddisable,setddisable] = useState(true)
   const [vy,setvy] = useState(0)
   const [vx,setvx] = useState(0)
   const [count,setcount]= useState(0)
+  const [Space_val,setval]= useState(0)
   function handleChange(event) {
     const { name, value } = event.target;
     setinput((prevalue) => {
@@ -30,6 +32,7 @@ export default function Formu(props){
         [name]: value,
       }
     });
+    setval(0)
     setx1(0)
     setx3(0)
     sety1(0)
@@ -62,6 +65,7 @@ export default function Formu(props){
     const B = input.b
     const C = input.c
     setcount(count+1)
+    setval(input.d)
     // x1 and x3
     const vartex_x = -B/(2*A)
     setvx(vartex_x)
@@ -133,11 +137,19 @@ export default function Formu(props){
           type="number"
 
         />
+        <input
+          onChange={handleChange}
+          name="d"
+          placeholder="Fundamental unit"
+          value={input.d}
+          type="number"
+
+        />
         <button disabled = {ddisable }onClick={handlesubmit}>Draw</button>
         <button disabled = {showdisable} onClick={showdraw}>Show</button>
          <button id="download" disabled={disable} onClick={savephoto}>Download</button>
       </form>
-       {ishidden ?<div  class="pie-canvas"><Canvasd VX ={vx} VY = {vy} X1={x1} X3={x3} Y1 = {y1} Y3={y3} BIZX={bizx} BIZY={bizy} A={input.a} B = {input.b} C = {input.c}/></div>:null}  
+       {ishidden ?<div  class="pie-canvas"><Canvasd VX ={vx} VY = {vy} X1={x1} X3={x3} Y1 = {y1} Y3={y3} BIZX={bizx} BIZY={bizy} A={input.a} B = {input.b} C = {input.c} SVAL ={Space_val}/></div>:null}  
     </div>
   );
 }

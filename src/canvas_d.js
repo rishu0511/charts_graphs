@@ -12,9 +12,9 @@ export default function Canvasd(props) {
     const context = canvas.getContext("2d");
     const width = window.innerWidth;
     setwidth(width);
-    drawStar("black",context,props.X1,props.X3,props.Y1,props.Y3,props.BIZX,props.BIZY,props.A,props.B,props.C,props.VX,props.VY);
+    drawStar("black",context,props.X1,props.X3,props.Y1,props.Y3,props.BIZX,props.BIZY,props.A,props.B,props.C,props.VX,props.VY,props.SVAL);
   });
-  function drawStar(fillColor,ctx,x1,x3,y1,y3,bzx,bzy,a,b,c,vx,vy){
+  function drawStar(fillColor,ctx,x1,x3,y1,y3,bzx,bzy,a,b,c,vx,vy,sval){
     ctx.fillStyle = fillColor;
     ctx.clearRect(0, 0, Width-Width/10+60, 460); 
     ctx.fillStyle = "white";
@@ -39,56 +39,44 @@ export default function Canvasd(props) {
     ctx.save()
     var scl = 20
     ctx.lineWidth=2
-    for(let i = 0;i<4 ;i++){
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(210, 0);
-        ctx.stroke();
-         for(let v = 1;v<=20 ;v++){
-          ctx.beginPath();
-          ctx.moveTo(10*v, -3);
-          ctx.lineTo(10*v, 3);
-          ctx.stroke();
-        }
-        ctx.rotate(Math.PI / 2);
-    }
     for(let v = 0;v<4 ;v++){
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        ctx.lineTo(210, 0);
+        ctx.lineTo(213, 0);
         ctx.stroke();
         if(v === 1){
           ctx.font = "18px fantasy";
           ctx.fillStyle = "black";
-          ctx.fillText("Y" ,0,230);
+          ctx.fillText("Y" ,0,236);
           ctx.fillText("X",-230,0);
         }
-         for(let i = 1;i<=20 ;i++){
+         for(let i = 1;i<=15 ;i++){
           ctx.beginPath();
-          ctx.moveTo(10*i, -3);
-          ctx.lineTo(10*i, 3);
+          ctx.moveTo(14*i, -3);
+          ctx.lineTo(14*i, 3);
           ctx.stroke();
           if(v === 1){
-            ctx.font = "6px fantasy";
+            ctx.font = "7px fantasy";
             ctx.fillStyle = "black";
-            ctx.fillText("-"+i,-10*i-5,-5);
-            ctx.fillText(+i,10*i,-5)
+            ctx.fillText("-"+i*sval,-14*i-5,-5);
+            ctx.fillText(+i*sval,14*i,-5)
           }else if(v === 2){
-            ctx.font = "6px fantasy";
+            ctx.font = "7px fantasy";
             ctx.fillStyle = "black";
-            ctx.fillText("-"+i,10*i,-5);
-            ctx.fillText(i ,-10*i-5,-5)
+            ctx.fillText("-"+i*sval,14*i,-5);
+            ctx.fillText(i*sval ,-14*i-5,-5)
           } 
         }
         ctx.rotate(Math.PI / 2);
     }
     ctx.restore()
-    ctx.lineWidth =2
+    ctx.lineWidth = 2
+    const sv = 10/sval
     ctx.beginPath();
-    ctx.moveTo(y1*10,x1*10);
-    ctx.quadraticCurveTo( bzy*10,bzx*10, y3*10,x3*10);
+    ctx.moveTo(y1*sv,x1*sv);
+    ctx.quadraticCurveTo( bzy*sv,bzx*sv,y3*sv,x3*sv);
     ctx.stroke();
-    ctx.save()
+    ctx.save();
     ctx.restore()
     
   }
