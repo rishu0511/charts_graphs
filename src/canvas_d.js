@@ -18,7 +18,7 @@ export default function Canvasd(props) {
     ctx.fillStyle = fillColor;
     ctx.clearRect(0, 0, Width-Width/10+60, 460); 
     ctx.fillStyle = "white";
-    ctx.fillRect(10,0, 750,460);
+    ctx.fillRect(10,0, 760,700);
     ctx.font = "18px fantasy";
     ctx.fillStyle = "black";
     if(c >= 0){
@@ -34,7 +34,7 @@ export default function Canvasd(props) {
     
     ctx.fillText("Equation :- "+a+"x²"+bvalue+"x"+cvalue,400,60);
     ctx.fillText("Vertex of parabola:-(" + vx +","+ vy +")",400,100);
-    ctx.translate(270,220)
+    ctx.translate(310,396)
     ctx.rotate(-Math.PI/2)
     ctx.save()
     var scl = 20
@@ -42,36 +42,36 @@ export default function Canvasd(props) {
     for(let v = 0;v<4 ;v++){
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        ctx.lineTo(213, 0);
+        ctx.lineTo(290, 0);
         ctx.stroke();
         if(v === 1){
           ctx.font = "18px fantasy";
           ctx.fillStyle = "black";
-          ctx.fillText("Y" ,0,236);
-          ctx.fillText("X",-230,0);
+          ctx.fillText("Y" ,23,276);
+          ctx.fillText("X",-280,20);
         }
          for(let i = 1;i<=15 ;i++){
           ctx.beginPath();
-          ctx.moveTo(14*i, -3);
-          ctx.lineTo(14*i, 3);
+          ctx.moveTo(19*i, -3);
+          ctx.lineTo(19*i, 3);
           ctx.stroke();
           if(v === 1){
-            ctx.font = "7px fantasy";
+            ctx.font = "9px fantasy";
             ctx.fillStyle = "black";
-            ctx.fillText("-"+i*sval,-14*i-5,-5);
-            ctx.fillText(+i*sval,14*i,-5)
+            ctx.fillText("-"+i*sval,-19*i-5,-5);
+            ctx.fillText(+i*sval,19*i,-5)
           }else if(v === 2){
-            ctx.font = "7px fantasy";
+            ctx.font = "9px fantasy";
             ctx.fillStyle = "black";
-            ctx.fillText("-"+i*sval,14*i,-5);
-            ctx.fillText(i*sval ,-14*i-5,-5)
+            ctx.fillText("-"+i*sval,19*i,-5);
+            ctx.fillText(i*sval ,-19*i-5,-5)
           } 
         }
         ctx.rotate(Math.PI / 2);
     }
     ctx.restore()
     ctx.lineWidth = 2
-    const sv = 10/sval
+    const sv = 19/sval
     ctx.beginPath();
     ctx.moveTo(y1*sv,x1*sv);
     ctx.quadraticCurveTo( bzy*sv,bzx*sv,y3*sv,x3*sv);
@@ -80,5 +80,5 @@ export default function Canvasd(props) {
     ctx.restore()
     
   }
-  return <canvas id="dCanvas" ref={canvasRef} width={Width-Width/10+60} height={460}  />;
+  return <canvas id="dCanvas" ref={canvasRef} width={Width-Width/10+60} height={700}  />;
 }
