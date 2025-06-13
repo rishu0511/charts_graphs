@@ -18,7 +18,7 @@ export default function Canvasd(props) {
     ctx.fillStyle = "white";
     ctx.clearRect(0, 0, Width-Width/10+60, 460);
     ctx.fillStyle = naam[0] || "white";
-    ctx.fillRect(10,0, 760,700)
+    ctx.fillRect(0,0, 760,700)
     ctx.font = "25px fantasy";
     ctx.fillStyle = naam[1] || "black"
     ctx.fillText(naam[2] || "",420,80)
