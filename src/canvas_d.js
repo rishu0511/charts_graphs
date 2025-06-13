@@ -31,7 +31,6 @@ export default function Canvasd(props) {
     }else if (b<0){
       setbvalue(b)
     }
-    
     ctx.fillText("Equation :- "+a+"x²"+bvalue+"x"+cvalue,400,60);
     ctx.fillText("Vertex of parabola:-(" + vx +","+ vy +")",400,100);
     ctx.translate(310,396)

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Form from './form.js';
 import Formu from "./form_para.js"
+import Formh from "./form_h.js"
 export default function App() {
   const[number,setnumber] =useState([0])
   return (
@@ -10,8 +11,8 @@ export default function App() {
       
       <div >
         <div class="first"><Form/></div>
-
         <div><Formu/></div>
+        <div><Formh/></div>
       </div>
     </div>
   );

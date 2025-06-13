@@ -24,7 +24,7 @@ background-color: #35374B;
 .FORM{
  position:relative;
   width: 310px;
-  height: 350px;
+  height: 320px;
   background: #78A083;
   padding: 10px;
   border-radius: 7px;
@@ -54,4 +54,7 @@ background-color: #35374B;
 }
 button:hover {
   background-color:#35374B;
+}
+#histogram{
+  height:390px
 }
