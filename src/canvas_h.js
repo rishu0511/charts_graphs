@@ -20,9 +20,9 @@ export default function Canvasd(props) {
     ctx.fillStyle = naam[0] || "white";
     ctx.fillRect(10,0, 760,700)
     ctx.font = "25px fantasy";
-    ctx.fillStyle = naam[1]
-    ctx.fillText(naam[2],420,80)
-    ctx.translate(120,600)
+    ctx.fillStyle = naam[1] || "black"
+    ctx.fillText(naam[2] || "",420,80)
+    ctx.translate(90,600)
     ctx.lineWidth = 2
     for(let v = 0;v<=1;v++){
         ctx.beginPath();
@@ -31,8 +31,8 @@ export default function Canvasd(props) {
         ctx.stroke();
         if(v===1){
            ctx.font = "20px fantasy";
-            ctx.fillStyle = naam[1];
-            ctx.fillText(yl,120,-70);
+            ctx.fillStyle = naam[1] || "black";
+            ctx.fillText(yl,120,-50);
             for(let i = 1;i<=ngy;i++){
               ctx.beginPath();
               ctx.moveTo((550/ngy)*i, -4);
@@ -45,8 +45,8 @@ export default function Canvasd(props) {
         }
         if(v===0){
            ctx.font = "20px fantasy";
-            ctx.fillStyle = naam[1];
-            ctx.fillText(xl,120,70);
+            ctx.fillStyle = naam[1] || "black";
+            ctx.fillText(xl,120,50);
           for(let i = 1;i<=ngx ;i++){
             ctx.beginPath();
             ctx.moveTo((550/ngx)*i, -4);
