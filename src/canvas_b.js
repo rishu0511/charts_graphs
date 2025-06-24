@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef, useEffect, useState } from "react";
-export default function Canvasd(props) {
+export default function Canvasb(props){
   const canvasRef = useRef(null);
   const [Width, setwidth] = useState(0);
   const [color,setcolor]= useState(["red","blue","yellow"]);
@@ -12,9 +12,9 @@ export default function Canvasd(props) {
     const context = canvas.getContext("2d");
     const width = window.innerWidth;
     setwidth(width);
-    drawStar("black",context,props.XGAP,props.YGAP,props.XL,props.YL,props.NGX,props.NGY,props.RECTS,props.COLOR,props.NAME,props.C,props.VX,props.VY,props.SVAL);
+    drawStar(context,props.YGAP,props.XL,props.YL,props.NGX,props.NGY,props.RECTS,props.COLOR,props.NAME,props.NAMEH);
   });
-  function drawStar(fillColor,ctx,xg,yg,xl,yl,ngx,ngy,rects,color,naam,vx,vy,sval){
+  function drawStar(ctx,yg,xl,yl,ngx,ngy,rects,color,naam,naamh){
     ctx.fillStyle = "white";
     ctx.clearRect(0, 0, Width-Width/10+60, 460);
     ctx.fillStyle = naam[0] || "white";
@@ -30,7 +30,7 @@ export default function Canvasd(props) {
         ctx.lineTo(560, 0);
         ctx.stroke();
         if(v===1){
-           ctx.font = "20px fantasy";
+            ctx.font = "20px fantasy";
             ctx.fillStyle = naam[1] || "black";
             ctx.fillText(yl,120,-50);
             for(let i = 1;i<=ngy;i++){
@@ -42,20 +42,17 @@ export default function Canvasd(props) {
               ctx.fillStyle = "black";
               ctx.fillText(yg*i,(550/ngy)*i,-20);
             }
+            const len  = naamh.length
+            for(let i=0;i<len;i++){
+              ctx.font = "14px Arial";
+              ctx.fillStyle = naam[1] || "black";
+              ctx.fillText(naamh[i],((550/ngy)/yg)*rects[i]+5,((550/ngx)*i)*1.2+25+(550/ngx)/2);
+            }
         }
         if(v===0){
-           ctx.font = "20px fantasy";
+            ctx.font = "20px fantasy";
             ctx.fillStyle = naam[1] || "black";
             ctx.fillText(xl,120,50);
-          for(let i = 1;i<=ngx ;i++){
-            ctx.beginPath();
-            ctx.moveTo((550/ngx)*i, -4);
-            ctx.lineTo((550/ngx)*i, 4);
-            ctx.stroke();
-            ctx.font = "13px fantasy";
-            ctx.fillStyle = "black";
-            ctx.fillText(xg*i,(550/ngx)*i,20);
-          }
         }
         ctx.rotate(-Math.PI/2)
       }
@@ -64,7 +61,7 @@ export default function Canvasd(props) {
     const len  = rects.length
     for(let i=0;i<=len;i++){
       ctx.fillStyle = color[i]
-      ctx.fillRect(-(550/ngx)*i,1,-(550/ngx),((550/ngy)/yg)*rects[i])
+      ctx.fillRect(-((550/ngx)*i)*1.2-20,1,-(550/ngx),((550/ngy)/yg)*rects[i])
     }
     ctx.restore()
   }

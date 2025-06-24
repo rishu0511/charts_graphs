@@ -47,13 +47,14 @@ export default function Form(props){
   element.setAttribute('download', filename);
 
   element.click();
-   setrname("")
+    setrname("")
     sethidden(false)
     setnumber([0])
     setper([])
     setcolor([])
     setname([])
     setdisable(true)
+    setddisable(false)
   }
   function makearrays(input_arr,set_arr){
     var colo_r = input_arr ;
@@ -107,21 +108,27 @@ export default function Form(props){
       console.log(element)
     })
     console.log(per)
-    setinput({
-    name: "",
-    numbers: "",
-    Nonames: "",
-    colors: "",
-    total: "",
-    })
     setddisable(true)
    sethidden(true)
   }, [input,per,number,val,color]);
- 
+  function Cancel(){
+    sethidden(false)
+    setdisable(true)
+    setddisable(false)
+    setrname("")
+    sethidden(false)
+    setnumber([0])
+    setper([])
+    setcolor([])
+    setname([])
+    setdisable(true)
+    setddisable(false)
+  }
 
   return (
     <div>
       <form class="FORM" >
+        <h2 class="form_name">Pie Chart</h2>
         <input
           onChange={handleChange}
           name="name"
@@ -160,6 +167,7 @@ export default function Form(props){
         />
         <button disabled={ddisable} onClick={handlesubmit}>Draw</button>
         <button id="download" disabled={disable} onClick={savephoto}>Download</button>
+        <button disabled={disable} onClick={Cancel}>Cancel</button>
       </form>
       {ishidden ?<div  class="pie-canvas"><Canvas ARR={per} VAL={val} COLOR={color} NAMES={name}  NAME={rname}/></div>:null}    </div>
   );

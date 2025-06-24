@@ -105,9 +105,29 @@ export default function Formu(props){
     sethidde(true)
     event.preventDefault();
   },[ishidden]);
+  // cancel
+  function Cancel(){
+    setsdisable(true)
+    setdisable(true)
+        setval(0)
+    setx1(0)
+    setx3(0)
+    sety1(0)
+    sety3(0)
+    setbx(0)
+    setby(0)
+    setvx(0)
+    setvy(0)
+    setcount(0)
+    sethidde(false)
+    setdisable(true)
+    setsdisable(true)
+    setddisable(false) 
+  }
   return (
     <div>
       <form class="FORM" >
+        <h2 class="form_name">Parabola</h2>
         <input
           onChange={handleChange}
           name="a"
@@ -143,11 +163,11 @@ export default function Formu(props){
           placeholder="Fundamental unit"
           value={input.d}
           type="number"
-
         />
         <button disabled = {ddisable }onClick={handlesubmit}>Draw</button>
         <button disabled = {showdisable} onClick={showdraw}>Show</button>
          <button id="download" disabled={disable} onClick={savephoto}>Download</button>
+         <button disabled = {disable} onClick={Cancel}>Cancel</button>
       </form>
        {ishidden ?<div  class="pie-canvas"><Canvasd VX ={vx} VY = {vy} X1={x1} X3={x3} Y1 = {y1} Y3={y3} BIZX={bizx} BIZY={bizy} A={input.a} B = {input.b} C = {input.c} SVAL ={Space_val}/></div>:null}  
     </div>

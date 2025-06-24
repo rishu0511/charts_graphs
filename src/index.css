@@ -24,7 +24,7 @@ background-color: #35374B;
 .FORM{
  position:relative;
   width: 310px;
-  height: 320px;
+  height: 390px;
   background: #78A083;
   padding: 10px;
   border-radius: 7px;
@@ -46,6 +46,7 @@ background-color: #35374B;
   position: relative;
   left: 0px;
   margin-left: 20px;
+  margin:5px;
   top:30px;
   height: 30px;
   width: 70px;
@@ -56,5 +57,12 @@ button:hover {
   background-color:#35374B;
 }
 #histogram{
-  height:390px
+  height:440px
+}
+#histogramp{
+  height:485px
+}
+.form_name{
+  font-family:fantasy;
+  color:#50727B;
 }
