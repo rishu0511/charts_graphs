@@ -67,11 +67,16 @@ export default function Formh(props){
 
     for(let v=0;v<=color_len;v++){
       var r = 0
-      colo_r[v] === " "? color_seprate.push(v):console.log(r);
+      colo_r[v] === ","? color_seprate.push(v):r=1;
     }
     var color_s_len = color_seprate.length
     for(let i=0;i<=color_s_len-1;i++){
-      var color_num = colo_r.slice(color_seprate[i],color_seprate[i+1] );
+      if(i===0){
+          var color_num = colo_r.slice(color_seprate[i],color_seprate[i+1] )
+      }else{
+        var color_num = colo_r.slice(color_seprate[i]+1,color_seprate[i+1] );
+      }
+      
       if(boolean==true){
         set_arr.push(parseFloat(color_num))
       }else{
@@ -87,14 +92,17 @@ export default function Formh(props){
 
     for(let v=0;v<=color_len;v++){
       var r = 0
-      colo_r[v] === " "? color_seprate.push(v):console.log(r);
+      colo_r[v] === ","? color_seprate.push(v):r=1;
     }
+    console.log(color_seprate)
     var color_s_len = color_seprate.length
     for(let i=0;i<=2;i++){
-      if(i<2){
+      if(i===0){
         var color_num = colo_r.slice(color_seprate[i],color_seprate[i+1]);
+      }else if(i===1){
+        var color_num = colo_r.slice(color_seprate[i]+1,color_seprate[i+1]);
       } else if(i===2){
-        var color_num = colo_r.slice(color_seprate[i],-1 );
+        var color_num = colo_r.slice(color_seprate[i]+1,-1 );
       }
         set_arr.push(color_num)
     }
@@ -103,22 +111,23 @@ export default function Formh(props){
   const handlesubmit = useCallback((event) => {
     // for x
     const xstr = input.x;
-    const xindex = xstr.indexOf(" ");
+    const xindex = xstr.indexOf(",");
     const xlen = xstr.length;
-    const splitnum = xstr.slice(0,xindex+1);
+    const splitnum = xstr.slice(0,xindex);
+    console.log(splitnum)
     const num = parseInt(splitnum)
     setxnumber(num)
-    const splitlabel = xstr.slice(xindex,xlen);
+    const splitlabel = xstr.slice(xindex+1,xlen);
     setxlabel(splitlabel)
     console.log(xlabel)
     // for y
     const ystr = input.y;
-    const yindex = ystr.indexOf(" ");
+    const yindex = ystr.indexOf(",");
     const ylen = ystr.length;
-    const splitnumy = ystr.slice(0,xindex+1);
+    const splitnumy = ystr.slice(0,xindex);
     const numy = parseFloat(splitnumy);
     setynumber(parseInt(splitnumy));
-    const splitlabely = ystr.slice(yindex,ylen);
+    const splitlabely = ystr.slice(yindex+1,ylen);
     setylabel(splitlabely);
     // Make array
     makearrays(input.recth,Recth,true)
@@ -142,27 +151,27 @@ export default function Formh(props){
     setdisable(true)
   }
   return (
-    <div>
+    <div class="setbottamdiv">
       <form class="FORM" id ="histogram">
         <h2 class="form_name">Histogram</h2>
         <input
           onChange={handleChange}
           name="name"
-          placeholder="background color gap font color gap then title..."
+          placeholder="background color,font color,title..."
           value={input.name}
           type="text"
         />
         <input
           onChange={handleChange}
           name="x"
-          placeholder="X gap with label..."
+          placeholder="X gap ,label..."
           value={input.x}
           type="text"
         />
         <input
           onChange={handleChange}
           name="y"
-          placeholder="Y gap with label..."
+          placeholder="Y gap,label..."
           value={input.y}
           type="text"
         />
@@ -183,7 +192,7 @@ export default function Formh(props){
         <input
           onChange={handleChange}
           name="recth"
-          placeholder="histogarm number with one gaps.."
+          placeholder="histogarm number with coma(,).."
           value={input.recth}
           type="text"
 
@@ -191,7 +200,7 @@ export default function Formh(props){
         <input
           onChange={handleChange}
           name="color"
-          placeholder="respective color with one gaps..."
+          placeholder="respective color with coma(,)..."
           value={input.color}
           type="text"
         />

@@ -10,12 +10,16 @@ background-color: #35374B;
 }
 .header_top{
   padding-left: 30px;
+  display: flex;
+  justify-content: center;
   font-family:fantasy;
   color:#50727B;
   font-size:70px;
 }
 .header_top_1{
   padding-left: 30px;
+  display: flex;
+  justify-content: center;
   font-family:fantasy;
   color:#78A083;
   font-size:30px;
@@ -27,6 +31,7 @@ background-color: #35374B;
   height: 390px;
   background: #78A083;
   padding: 10px;
+  margin-left: 10px;
   border-radius: 7px;
   margin:5px;
   margin-top: 20px;
@@ -65,4 +70,32 @@ button:hover {
 .form_name{
   font-family:fantasy;
   color:#50727B;
+}
+.setnavform{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.link{
+  text-decoration: none;
+  color:  #50727B;;
+  font-family: fantasy;
+  background-color: #97c7a5;
+  font-size: 20px;
+  margin:5px;
+  border-radius: 10px;
+  padding: 7px;
+}
+.link:hover{
+  background-color: #beebca;
+}
+.setbottamdiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#hcanvas{
+  align-items: center;
 }

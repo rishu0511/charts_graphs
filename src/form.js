@@ -57,19 +57,23 @@ export default function Form(props){
     setddisable(false)
   }
   function makearrays(input_arr,set_arr){
-    var colo_r = input_arr ;
-    var color_len = colo_r.length
-    var color_seprate = []
-    color_seprate.push(0) 
+    var arr_r = input_arr;
+    var arr_len = arr_r.length
+    var arr_seprate = []
+    arr_seprate.push(0) 
 
-    for(let v=0;v<=color_len;v++){
+    for(let v=0;v<=arr_len;v++){
       var r = 0
-      colo_r[v] === " "? color_seprate.push(v):console.log(r);
+      arr_r[v] === ","? arr_seprate.push(v):r=1;
     }
-    var color_s_len = color_seprate.length
-    for(let i=0;i<=color_s_len-1;i++){
-      var color_num = colo_r.slice(color_seprate[i],color_seprate[i+1] );
-      set_arr.push(color_num)
+    var arr_s_len = arr_seprate.length
+    for(let i=0;i<=arr_s_len-1;i++){
+      if(i===0){
+        var arr_num = arr_r.slice(arr_seprate[i],arr_seprate[i+1]);
+      } else{
+        var arr_num = arr_r.slice(arr_seprate[i]+1,arr_seprate[i+1]);
+      }
+      set_arr.push(arr_num)
     }
   }
   const handlesubmit = useCallback((event) => {
@@ -79,20 +83,28 @@ export default function Form(props){
     event.preventDefault()
     makearrays(input.Nonames,name)
     makearrays(input.colors,color)
-    console.log(name)
+    // here all number works 
+
     var num = input.numbers;
     var num_len = num.length
     var arr_seprate = []
     arr_seprate.push(0)
     for(let i=0;i<=num_len;i++){
       var ra = 0
-      num[i]=== " "? arr_seprate.push(i):console.log(ra);
+      num[i]=== ","? arr_seprate.push(i):ra=1;
     }
     var arr_s_len = arr_seprate.length
     for(let i=0;i<=arr_s_len-1;i++){
-      var f_num = num.slice(arr_seprate[i],arr_seprate[i+1] );
-      var snum = parseFloat(f_num);
-      number.push(snum)
+      if(i===0){
+        var f_num = num.slice(arr_seprate[i],arr_seprate[i+1] );
+        var snum = parseFloat(f_num);
+        number.push(snum)
+      }else{
+        var f_num = num.slice(arr_seprate[i]+1,arr_seprate[i+1] );
+        var snum = parseFloat(f_num);
+        number.push(snum)
+
+      }
     }
     var arr_len = number.length;
     var total = 500
@@ -105,9 +117,7 @@ export default function Form(props){
     per.pop()
     per.forEach((element,index)=>{
       setval(element)
-      console.log(element)
     })
-    console.log(per)
     setddisable(true)
    sethidden(true)
   }, [input,per,number,val,color]);
@@ -126,7 +136,7 @@ export default function Form(props){
   }
 
   return (
-    <div>
+    < div class="setbottamdiv">
       <form class="FORM" >
         <h2 class="form_name">Pie Chart</h2>
         <input
@@ -139,21 +149,21 @@ export default function Form(props){
         <input
           onChange={handleChange}
           name="numbers"
-          placeholder="All numbers with gap..."
+          placeholder="All numbers with coma(,)..."
           value={input.numbers}
           type="text"
         />
         <input
           onChange={handleChange}
           name="Nonames"
-          placeholder="Respected names with no."
+          placeholder="Respected names with no.(serrated with ,)"
           value={input.Nonames}
           type="text"
         />
         <input
           onChange={handleChange}
           name="colors"
-          placeholder="respected colors with names with gap..."
+          placeholder="respected colors with names with one coma(,)..."
           value={input.colors}
           type="text"
         />

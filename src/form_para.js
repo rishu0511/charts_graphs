@@ -18,11 +18,9 @@ export default function Formu(props){
   const [bizx,setbx] = useState(0)
   const [bizy,setby] = useState(0)
   const [disable,setdisable] = useState(true)
-  const [showdisable,setsdisable] = useState(true)
   const [ddisable,setddisable] = useState(true)
   const [vy,setvy] = useState(0)
   const [vx,setvx] = useState(0)
-  const [count,setcount]= useState(0)
   const [Space_val,setval]= useState(0)
   function handleChange(event) {
     const { name, value } = event.target;
@@ -41,10 +39,8 @@ export default function Formu(props){
     setby(0)
     setvx(0)
     setvy(0)
-    setcount(0)
     sethidde(false)
     setdisable(true)
-    setsdisable(true)
     setddisable(false)
 
   }
@@ -64,7 +60,6 @@ export default function Formu(props){
     const A = input.a
     const B = input.b
     const C = input.c
-    setcount(count+1)
     setval(input.d)
     // x1 and x3
     const vartex_x = -B/(2*A)
@@ -73,43 +68,31 @@ export default function Formu(props){
     const vertex_y = -D/(4*A)
     setvy(vertex_y)
     event.preventDefault();
-    console.log(vertex_y)
-    const x3val = parseFloat(vartex_x) + parseFloat(input.cut_val)
-    setx3(x3val)
-    const x1val = parseFloat(vartex_x) - parseFloat(input.cut_val)
-    setx1(x1val)
-    console.log(x1)
+    const x3 = parseFloat(vartex_x) + parseFloat(input.cut_val)
+    setx3(x3)
+    const x1= parseFloat(vartex_x) - parseFloat(input.cut_val)
+    setx1(x1)
     // y1 and y3
-    const ct_vrtx_y1 = parseFloat(A*(x1*x1)) +parseFloat((B*x1))+parseInt(C)
-    sety1(ct_vrtx_y1)
-    const ct_vrtx_y3 = parseFloat(A*(x3*x3)) +parseFloat((B*x3))+parseInt(C)
-    sety3(ct_vrtx_y3)
-    console.log(y3)
+    const y1 = parseFloat(A*(x1*x1)) +parseFloat((B*x1))+parseInt(C)
+    sety1(y1)
+    const y3 = parseFloat(A*(x3*x3)) +parseFloat((B*x3))+parseInt(C)
+    sety3(y3)
+    
     const bizeex = (parseFloat(x1)+parseFloat(x3))/2
     setbx(bizeex)
     const consbiz =parseFloat(((2*A)*x1)) +parseInt(B)
     const bizyval = (x3-x1)/2
     const bizy = parseFloat(bizyval*consbiz)+parseFloat(y1)
     setby(bizy)
-    console.log(bizeex)
-    console.log(bizy)
-    
-    if(count===2){
-      setsdisable(false)
+      sethidde(true)
       setddisable(true)
-    }
+      setdisable(false)
     event.preventDefault();
-  },[input,x1,x3,y1,y3,bizx,bizy,ishidden,count]);
-  const showdraw = useCallback((event) => {
-    setdisable(false)
-    sethidde(true)
-    event.preventDefault();
-  },[ishidden]);
+  },[input,bizx,bizy,ishidden]);
   // cancel
   function Cancel(){
-    setsdisable(true)
     setdisable(true)
-        setval(0)
+    setval(0)
     setx1(0)
     setx3(0)
     sety1(0)
@@ -118,14 +101,12 @@ export default function Formu(props){
     setby(0)
     setvx(0)
     setvy(0)
-    setcount(0)
     sethidde(false)
     setdisable(true)
-    setsdisable(true)
     setddisable(false) 
   }
   return (
-    <div>
+    <div class="setbottamdiv">
       <form class="FORM" >
         <h2 class="form_name">Parabola</h2>
         <input
@@ -165,7 +146,7 @@ export default function Formu(props){
           type="number"
         />
         <button disabled = {ddisable }onClick={handlesubmit}>Draw</button>
-        <button disabled = {showdisable} onClick={showdraw}>Show</button>
+       
          <button id="download" disabled={disable} onClick={savephoto}>Download</button>
          <button disabled = {disable} onClick={Cancel}>Cancel</button>
       </form>

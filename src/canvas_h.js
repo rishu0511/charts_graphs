@@ -3,9 +3,6 @@ import { useRef, useEffect, useState } from "react";
 export default function Canvasd(props) {
   const canvasRef = useRef(null);
   const [Width, setwidth] = useState(0);
-  const [color,setcolor]= useState(["red","blue","yellow"]);
-  const [cvalue,setvalue] = useState("");
-  const [bvalue,setbvalue] = useState("");
   const ref = useRef(0);
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -15,6 +12,15 @@ export default function Canvasd(props) {
     drawStar("black",context,props.XGAP,props.YGAP,props.XL,props.YL,props.NGX,props.NGY,props.RECTS,props.COLOR,props.NAME,props.C,props.VX,props.VY,props.SVAL);
   });
   function drawStar(fillColor,ctx,xg,yg,xl,yl,ngx,ngy,rects,color,naam,vx,vy,sval){
+    let screenx=0
+    if(Width>900){
+      screenx=Width/6
+    }else{
+      screenx=0
+    }
+    ctx.translate(screenx,0)
+    ctx.save()
+    ctx.restore()
     ctx.fillStyle = "white";
     ctx.clearRect(0, 0, Width-Width/10+60, 460);
     ctx.fillStyle = naam[0] || "white";

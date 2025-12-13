@@ -15,6 +15,13 @@ export default function Canvasb(props){
     drawStar(context,props.YGAP,props.XL,props.YL,props.NGX,props.NGY,props.RECTS,props.COLOR,props.NAME,props.NAMEH);
   });
   function drawStar(ctx,yg,xl,yl,ngx,ngy,rects,color,naam,naamh){
+    let screenx=0
+    if(Width>900){
+      screenx=Width/6
+    }else{
+      screenx=0
+    }
+    ctx.translate(screenx,0)
     ctx.fillStyle = "white";
     ctx.clearRect(0, 0, Width-Width/10+60, 460);
     ctx.fillStyle = naam[0] || "white";

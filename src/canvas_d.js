@@ -3,7 +3,6 @@ import { useRef, useEffect, useState } from "react";
 export default function Canvasd(props) {
   const canvasRef = useRef(null);
   const [Width, setwidth] = useState(0);
-  const [color,setcolor]= useState(["red","blue","yellow"]);
   const [cvalue,setvalue] = useState("");
   const [bvalue,setbvalue] = useState("");
   const ref = useRef(0);
@@ -12,9 +11,16 @@ export default function Canvasd(props) {
     const context = canvas.getContext("2d");
     const width = window.innerWidth;
     setwidth(width);
-    drawStar("black",context,props.X1,props.X3,props.Y1,props.Y3,props.BIZX,props.BIZY,props.A,props.B,props.C,props.VX,props.VY,props.SVAL);
+    drawStar("black",context,props.X1,props.X3,props.Y1,props.Y3,props.BIZX,props.BIZY,props.A,props.B,props.C,props.VX,props.VY,props.SVAL,Width);
   });
-  function drawStar(fillColor,ctx,x1,x3,y1,y3,bzx,bzy,a,b,c,vx,vy,sval){
+  function drawStar(fillColor,ctx,x1,x3,y1,y3,bzx,bzy,a,b,c,vx,vy,sval,width){
+    let screex=0
+    if(width>900){
+      screex=width/6
+    }else{
+      screex=0
+    }
+    ctx.translate(screex,0)
     ctx.fillStyle = fillColor;
     ctx.clearRect(0, 0, Width-Width/10+60, 460); 
     ctx.fillStyle = "white";
@@ -33,6 +39,7 @@ export default function Canvasd(props) {
     }
     ctx.fillText("Equation :- "+a+"x²"+bvalue+"x"+cvalue,400,60);
     ctx.fillText("Vertex of parabola:-(" + vx +","+ vy +")",400,100);
+    
     ctx.translate(310,396)
     ctx.rotate(-Math.PI/2)
     ctx.save()

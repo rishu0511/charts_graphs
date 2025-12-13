@@ -3,19 +3,33 @@ import { useRef, useEffect, useState } from "react";
 export default function Canvas(props) {
   const canvasRef = useRef(null);
   const [Width, setwidth] = useState(0);
-  const [color,setcolor]= useState(["red","blue","yellow"]);
-  const [value,setvalue] = useState(0);
   const ref = useRef(0);
   useEffect(() => {
     const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
+    const context = setupcanvas(canvas)
     const width = window.innerWidth;
     setwidth(width);
-    drawStar("black",context,props.VAL,props.ARR,props.COLOR,props.NAMES,props.F_SIZE,props.NAME);
+    drawStar("black",context,props.VAL,props.ARR,props.COLOR,props.NAMES,props.F_SIZE,props.NAME,Width);
   });
-  function drawStar(fillColor, ctx,value,arr,color,name ,fsize,rname){
+  function setupcanvas(canvas){
+    const dpr= window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width=rect.width*dpr;
+    canvas.height=rect.height*dpr;
+    const ctx = canvas.getContext('2d')
+    ctx.scale(dpr,dpr)
+    return ctx;
+  }
+  function drawStar(fillColor, ctx,value,arr,color,name ,fsize,rname,width){
     var len  = arr.length;
     ctx.fillStyle = fillColor;
+    let screex=0
+    if(width>900){
+      screex=width/6
+    }else{
+      screex=0
+    }
+    ctx.translate(screex,0);
     ctx.save();
     ctx.clearRect(0, 0, Width-Width/10+60, 460);  
     ctx.fillStyle = "#78A083";
@@ -36,7 +50,6 @@ export default function Canvas(props) {
     ctx.strokeStyle = "black";
     ctx.lineWidth = 8;
     ctx.lineCap = "round";
-    // Hour marks
     ctx.save();
     var VAL = value;
     for(let v = 0; v <= len; v++){

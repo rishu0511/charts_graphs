@@ -63,11 +63,15 @@ export default function Formb(props){
 
     for(let v=0;v<=color_len;v++){
       var r = 0
-      colo_r[v] === " "? color_seprate.push(v):console.log(r);
+      colo_r[v] === ","? color_seprate.push(v):r=1;
     }
     var color_s_len = color_seprate.length
     for(let i=0;i<=color_s_len-1;i++){
-      var color_num = colo_r.slice(color_seprate[i],color_seprate[i+1] );
+      if(i===0){
+        var color_num = colo_r.slice(color_seprate[i],color_seprate[i+1] );
+      }else{
+        var color_num = colo_r.slice(color_seprate[i]+1,color_seprate[i+1] );
+      }
       if(boolean==true){
         set_arr.push(parseFloat(color_num))
       }else{
@@ -83,13 +87,15 @@ export default function Formb(props){
 
     for(let v=0;v<=color_len;v++){
       var r = 0
-      colo_r[v] === " "? color_seprate.push(v):console.log(r);
+      colo_r[v] === ","? color_seprate.push(v):r=1;
     }
     for(let i=0;i<=2;i++){
-      if(i<2){
+      if(i===0){
         var color_num = colo_r.slice(color_seprate[i],color_seprate[i+1]);
-      } else if(i===2){
-        var color_num = colo_r.slice(color_seprate[i],color_len);
+      }else if(i===1) {
+        var color_num = colo_r.slice(color_seprate[i]+1,color_seprate[i+1]);
+      }else if(i===2){
+        var color_num = colo_r.slice(color_seprate[i]+1,color_len);
       }
         set_arr.push(color_num)
     }
@@ -110,8 +116,6 @@ export default function Formb(props){
     makearrays(input.color,color,false)
     makearrays(input.nameh,Nameh,false)
     makearrayss(input.name,name)
-    
-    console.log(Nameh)
     sethidden(true);
     setdisable(false)
     event.preventDefault();
@@ -128,13 +132,13 @@ export default function Formb(props){
     setrnameh([])
   }
   return (
-    <div>
+    <div class="setbottamdiv">
       <form class="FORM" id ="histogramp">
         <h2 class="form_name">Bar Graph</h2>
         <input
           onChange={handleChange}
           name="name"
-          placeholder="background color gap font color gap then title..."
+          placeholder="background color, font color,title..."
           value={input.name}
           type="text"
         />
@@ -148,14 +152,14 @@ export default function Formb(props){
         <input
           onChange={handleChange}
           name="y"
-          placeholder="Y gap with label..."
+          placeholder="Y gap ,label..."
           value={input.y}
           type="text"
         />
         <input
           onChange={handleChange}
           name="ngx"
-          placeholder="Width of bar"
+          placeholder="Max no of bars(adjust width of bar as well)"
           value={input.ngx}
           type="number"
         />
@@ -169,7 +173,7 @@ export default function Formb(props){
         <input
           onChange={handleChange}
           name="recth"
-          placeholder="histogarm number with one gaps.."
+          placeholder="Bargraphs number with one coma(,).."
           value={input.recth}
           type="text"
 
@@ -177,7 +181,7 @@ export default function Formb(props){
         <input
           onChange={handleChange}
           name="nameh"
-          placeholder="Bar graphs name with one gaps.."
+          placeholder="Bar graphs name with one coma(,).."
           value={input.nameh}
           type="text"
 
@@ -185,7 +189,7 @@ export default function Formb(props){
         <input
           onChange={handleChange}
           name="color"
-          placeholder="respective color with one gaps..."
+          placeholder="respective color with one coma(,)..."
           value={input.color}
           type="text"
         />
