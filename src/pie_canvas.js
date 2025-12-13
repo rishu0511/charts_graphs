@@ -6,20 +6,11 @@ export default function Canvas(props) {
   const ref = useRef(0);
   useEffect(() => {
     const canvas = canvasRef.current;
-    const context = setupcanvas(canvas)
+    const context = canvas.getContext("2d");
     const width = window.innerWidth;
     setwidth(width);
     drawStar("black",context,props.VAL,props.ARR,props.COLOR,props.NAMES,props.F_SIZE,props.NAME,Width);
   });
-  function setupcanvas(canvas){
-    const dpr= window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-    canvas.width=rect.width*dpr;
-    canvas.height=rect.height*dpr;
-    const ctx = canvas.getContext('2d')
-    ctx.scale(dpr,dpr)
-    return ctx;
-  }
   function drawStar(fillColor, ctx,value,arr,color,name ,fsize,rname,width){
     var len  = arr.length;
     ctx.fillStyle = fillColor;
@@ -50,6 +41,7 @@ export default function Canvas(props) {
     ctx.strokeStyle = "black";
     ctx.lineWidth = 8;
     ctx.lineCap = "round";
+
     ctx.save();
     var VAL = value;
     for(let v = 0; v <= len; v++){

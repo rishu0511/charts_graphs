@@ -99,3 +99,14 @@ button:hover {
 #hcanvas{
   align-items: center;
 }
+@media screen and (max-width: 800px) {
+  .setbottamdiv{
+    align-items:flex-start;
+  }
+  .header_top{
+    justify-self:left
+  }
+  .header_top_1{
+    justify-self: left
+  }
+}
