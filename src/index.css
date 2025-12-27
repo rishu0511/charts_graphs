@@ -101,9 +101,6 @@ button:hover {
   padding-left: 180px;
   align-items: center;
 }
-#dCanvas{
-  width:760px
-}
 @media screen and (max-width: 800px) {
   .setbottamdiv{
     align-items:flex-start;
@@ -113,5 +110,8 @@ button:hover {
   }
   .header_top_1{
     justify-self: left
+  }
+  .posCanvas{
+    padding-left: 0;
   }
 }
