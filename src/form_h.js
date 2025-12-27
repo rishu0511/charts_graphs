@@ -17,6 +17,8 @@ export default function Formh(props){
   const [ylabel,setylabel] = useState("")
   const [Recth,setrect] = useState([])
   const [color,setcolor] = useState([])
+  const [xsetting,setxsetting] = useState([])
+  const [histwidth,sethwidth] = useState(0)
   const [ishidden,sethidden] = useState(false)
   const [ihidden,sethidde] = useState(false)
   const [Total,settotal] = useState(0)
@@ -31,6 +33,7 @@ export default function Formh(props){
     setcolor([])
     setrect([])
     sethidden(false)
+    setxsetting([])
     setrname([])
     setdisable(true)
     const { name, value } = event.target;
@@ -42,7 +45,7 @@ export default function Formh(props){
     });
   }
   function savephoto(){
-    var canvas = document.querySelector("#hCanvas");
+    var canvas = document.querySelector("#hcanvas");
     var image = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
     var element = document.createElement('a');
     var filename = 'test.jpg';
@@ -53,6 +56,8 @@ export default function Formh(props){
     setynumber(0)
     setxlabel("")
     setylabel("")
+    setxsetting([])
+
     setcolor([])
     setrect([])
     sethidden(false)
@@ -102,7 +107,7 @@ export default function Formh(props){
       }else if(i===1){
         var color_num = colo_r.slice(color_seprate[i]+1,color_seprate[i+1]);
       } else if(i===2){
-        var color_num = colo_r.slice(color_seprate[i]+1,-1 );
+        var color_num = colo_r.slice(color_seprate[i]+1,input_arr.length);
       }
         set_arr.push(color_num)
     }
@@ -111,20 +116,18 @@ export default function Formh(props){
   const handlesubmit = useCallback((event) => {
     // for x
     const xstr = input.x;
-    const xindex = xstr.indexOf(",");
-    const xlen = xstr.length;
-    const splitnum = xstr.slice(0,xindex);
-    console.log(splitnum)
-    const num = parseInt(splitnum)
-    setxnumber(num)
-    const splitlabel = xstr.slice(xindex+1,xlen);
+    makearrayss(input.x,xsetting)
+    const xnum = parseFloat(xsetting[0])
+    const histw = parseFloat(xsetting[1])
+    sethwidth(histw)
+    setxnumber(xnum)
+    const splitlabel = xsetting[2]
     setxlabel(splitlabel)
-    console.log(xlabel)
     // for y
     const ystr = input.y;
     const yindex = ystr.indexOf(",");
     const ylen = ystr.length;
-    const splitnumy = ystr.slice(0,xindex);
+    const splitnumy = ystr.slice(0,yindex);
     const numy = parseFloat(splitnumy);
     setynumber(parseInt(splitnumy));
     const splitlabely = ystr.slice(yindex+1,ylen);
@@ -164,7 +167,7 @@ export default function Formh(props){
         <input
           onChange={handleChange}
           name="x"
-          placeholder="X gap ,label..."
+          placeholder="X gap,width of histogram,label..."
           value={input.x}
           type="text"
         />
@@ -208,7 +211,7 @@ export default function Formh(props){
         <button id="download" disabled={disable} onClick={savephoto}>Download</button>
         <button disabled = {disable} onClick={Cancel}>Cancel</button>
       </form>
-        {ishidden ?<div  class="pie-canvas"><Canvas XGAP={numberx} YGAP={numbery} XL = {xlabel} YL={ylabel} NGX = {input.ngx} NGY= {input.ngy} RECTS = {Recth} COLOR = {color} NAME = {name}/></div>:null}
+        {ishidden ?<div  class="pie-canvas"><Canvas XGAP={numberx} YGAP={numbery} XL = {xlabel} YL={ylabel} NGX = {input.ngx} NGY= {input.ngy} RECTS = {Recth} COLOR = {color} NAME = {name} WID = {histwidth}/></div>:null}
     </div>
   );
 }

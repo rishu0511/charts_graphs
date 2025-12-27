@@ -103,13 +103,14 @@ export default function Formb(props){
 
   const handlesubmit = useCallback((event) => {
     // for y
+    event.preventDefault()
     const ystr = input.y;
-    const yindex = ystr.indexOf(" ");
+    const yindex = ystr.indexOf(",");
     const ylen = ystr.length;
     const splitnumy = ystr.slice(0,yindex+1);
     const numy = parseFloat(splitnumy);
     setynumber(parseInt(splitnumy));
-    const splitlabely = ystr.slice(yindex,ylen);
+    const splitlabely = ystr.slice(yindex+1,ylen);
     setylabel(splitlabely);
     // Make array
     makearrays(input.recth,Recth,true)

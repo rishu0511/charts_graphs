@@ -73,6 +73,7 @@ button:hover {
 }
 .setnavform{
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 
@@ -96,8 +97,12 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
-#hcanvas{
+.posCanvas{
+  padding-left: 180px;
   align-items: center;
+}
+#dCanvas{
+  width:760px
 }
 @media screen and (max-width: 800px) {
   .setbottamdiv{

@@ -9,20 +9,14 @@ export default function Canvasd(props) {
     const context = canvas.getContext("2d");
     const width = window.innerWidth;
     setwidth(width);
-    drawStar("black",context,props.XGAP,props.YGAP,props.XL,props.YL,props.NGX,props.NGY,props.RECTS,props.COLOR,props.NAME,props.C,props.VX,props.VY,props.SVAL);
+    drawStar(props.WID,context,props.XGAP,props.YGAP,props.XL,props.YL,props.NGX,props.NGY,props.RECTS,props.COLOR,props.NAME,props.SVAL);
   });
-  function drawStar(fillColor,ctx,xg,yg,xl,yl,ngx,ngy,rects,color,naam,vx,vy,sval){
-    let screenx=0
-    if(Width>900){
-      screenx=Width/6
-    }else{
-      screenx=0
-    }
-    ctx.translate(screenx,0)
+  function drawStar(histwidth,ctx,xg,yg,xl,yl,ngx,ngy,rects,color,naam){
+    ctx.translate(0,0)
     ctx.save()
     ctx.restore()
     ctx.fillStyle = "white";
-    ctx.clearRect(0, 0, Width-Width/10+60, 460);
+    ctx.clearRect(0, 0,760, 460);
     ctx.fillStyle = naam[0] || "white";
     ctx.fillRect(0,0, 760,700)
     ctx.font = "25px fantasy";
@@ -65,14 +59,15 @@ export default function Canvasd(props) {
         }
         ctx.rotate(-Math.PI/2)
       }
-    ctx.restore()
     ctx.save()
     const len  = rects.length
     for(let i=0;i<=len;i++){
+      let hwid= histwidth;
+      const histx= (-(550/ngx)/xg)*(histwidth)
       ctx.fillStyle = color[i]
-      ctx.fillRect(-(550/ngx)*i,1,-(550/ngx),((550/ngy)/yg)*rects[i])
+      ctx.fillRect(histx*i,1,(-(550/ngx)/xg)*(histwidth),((550/ngy)/yg)*rects[i])
     }
     ctx.restore()
   }
-  return <canvas id="hCanvas" ref={canvasRef} width={Width-Width/10+60} height={700} />
+  return <canvas id="hcanvas" class="posCanvas" ref={canvasRef} width={760} height={700} />
 }
