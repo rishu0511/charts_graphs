@@ -16,7 +16,7 @@ export default function Canvasd(props) {
     ctx.save()
     ctx.restore()
     ctx.fillStyle = "white";
-    ctx.clearRect(0, 0,760, 700);
+    ctx.clearRect(0, 0,Width-Width/10+60, 700);
     ctx.fillStyle = naam[0] || "white";
     ctx.fillRect(0,0, 760,700)
     ctx.font = "25px fantasy";
@@ -69,5 +69,5 @@ export default function Canvasd(props) {
     }
     ctx.restore()
   }
-  return <canvas id="hcanvas" class="posCanvas" ref={canvasRef} width={760} height={700} />
+  return <canvas id="hcanvas" class="posCanvas" ref={canvasRef} width={Width-Width/10+60} height={700} />
 }
