@@ -98,8 +98,7 @@ button:hover {
   align-items: center;
 }
 .posCanvas{
-  padding-left: 180px;
-  align-items: center;
+  margin-left: 180px;
 }
 @media screen and (max-width: 800px) {
   .setbottamdiv{
@@ -112,6 +111,6 @@ button:hover {
     justify-self: left
   }
   .posCanvas{
-    padding-left: 0;
+    margin-left: 0;
   }
 }

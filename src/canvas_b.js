@@ -17,7 +17,7 @@ export default function Canvasb(props){
   function drawStar(ctx,yg,xl,yl,ngx,ngy,rects,color,naam,naamh){
     ctx.translate(0,0)
     ctx.fillStyle = "white";
-    ctx.clearRect(0, 0, 760, 460);
+    ctx.clearRect(0, 0, 760, 700);
     ctx.fillStyle = naam[0] || "white";
     ctx.fillRect(0,0, 760,700)
     ctx.font = "25px fantasy";
